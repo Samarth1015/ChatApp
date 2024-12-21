@@ -8,7 +8,7 @@ export default function Chat() {
   let [message, SetMessage] = useState([]);
 
   useEffect(() => {
-    socket = new WebSocket("ws://localhost:8000/message");
+    socket = new WebSocket("wss://chatf-production.up.railway.app/message");
     socket.onmessage = (event) => {
       console.log(event.data);
       SetMessage((prev) => [...prev, event.data]);
@@ -25,6 +25,7 @@ export default function Chat() {
   function submit() {
     if (socket.readyState === WebSocket.OPEN) {
       socket.send(val);
+      Setval("");
     }
   }
 
@@ -60,6 +61,12 @@ export default function Chat() {
       {/* Input Section */}
       <div className="bg-gray-200 text-black p-4 flex items-center space-x-2 w-full absolute bottom-0">
         <input
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              submit();
+            }
+          }}
+          value={val}
           onChange={handleChange}
           type="text"
           placeholder="Type a message"
