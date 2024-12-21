@@ -59,7 +59,7 @@ export default function Chat() {
       </div>
 
       {/* Input Section */}
-      <div className="bg-gray-200 text-black p-4 flex items-center space-x-2 w-full absolute bottom-0">
+      <div className="bg-gray-200 text-black p-4 flex items-center space-x-2 w-full">
         <input
           onKeyDown={(e) => {
             if (e.key === "Enter") {
