@@ -24,6 +24,10 @@ export default function Chat() {
   }
   function submit() {
     if (socket.readyState === WebSocket.OPEN) {
+      if (val.trim() === "") {
+        alert("Please enter a message");
+        return;
+      }
       socket.send(val);
       Setval("");
     }
